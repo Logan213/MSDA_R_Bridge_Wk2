@@ -1,0 +1,90 @@
+# **R Bridge Week 2 Assignment**
+## **Logan Thomson**
+
+### **The `choose()` Function**
+
+R has a built-in function for combinations, which is a formula for the number of combinations possible from a given set. This can be written out several ways, it is commonly seen as 
+
+#### $_nC_r$
+
+### **The Combination Formula**
+
+To calculate the number of ways n items can be chosen in sets of r, we make use of the factorial:  
+
+### $\frac{n!}{r!(n-r)!}$
+
+
+### Writing our own combination function
+
+R has built-in functions for both the combination formula (see above), and the factorial. Following is how you can calculate a combination without using either built-in function:
+
+### **Calculating the factorial**
+
+First, we need to create the factorial function. I have done this using a for loop.
+
+```{r}
+my_factorial <- function(t){
+  x <- 1
+  for (i in 1:t){
+    (x<- x * i)
+  } 
+  return(x)
+} 
+
+```
+
+
+Let's test the function and see the returned calculation:
+```
+my_factorial(5)
+```
+
+```{r echo=FALSE}
+my_factorial <- function(t){
+  x <- 1
+  for (i in 1:t){
+    (x<- x * i)
+  } 
+  return(x)
+} 
+
+my_factorial(5)
+```
+
+### **Creating the combination function**
+
+Now that we have a working factorial function, we can simply enter this into the combination formula to calculate the possible combinations from a given set of objects:
+
+```{r}
+my.combo <- function(n, r){
+  combo <- (my_factorial(n) / (my_factorial(r) * my_factorial(n - r)))
+  return(combo)
+}
+```
+
+```
+my.combo(6, 2)
+```
+
+```{r echo=FALSE}
+my.combo <- function(n, r){
+  combo <- (my_factorial(n) / (my_factorial(r) * my_factorial(n - r)))
+  return(combo)
+}
+
+my.combo(6, 2)
+```
+
+```
+my.combo(5, 3)
+```
+
+```{r echo=FALSE}
+my.combo <- function(n, r){
+  combo <- (my_factorial(n) / (my_factorial(r) * my_factorial(n - r)))
+  return(combo)
+}
+
+my.combo(5, 3)
+```
+Looks like we have success!
